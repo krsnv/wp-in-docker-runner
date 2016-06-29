@@ -5,7 +5,6 @@
 # ------------------------------------------------------------------------------
 # @TODO:
 # 1. Activate/Deactivate item if WP running
-# 2. JSON configuration file
 
 import os
 import signal
@@ -20,7 +19,11 @@ from gi.repository import Notify as notify
 
 APPINDICATOR_ID = 'myappindicator'
 
-print(os.path.dirname(__file__))
+with open(os.path.dirname(__file__) + '/config.json') as configuration:
+    config = json.load(configuration)
+
+    container = str(config['container'])
+    port = str(config['port'])
 
 def main():
     indicator = appindicator.Indicator.new(APPINDICATOR_ID, os.path.dirname(__file__) + '/wp.svg', appindicator.IndicatorCategory.SYSTEM_SERVICES)
@@ -45,11 +48,11 @@ def build_menu():
 
 
 def start_wordpress(_):
-    os.system('docker run -p 80:80 -d --name wordpress eugeneware/docker-wordpress-nginx')
-    notify.Notification.new("Docker WordPress", 'Запущен Wordpress на http://localhost', None).show()
+    os.system("docker run -p "+ port +":80 -d --name "+ container +" eugeneware/docker-wordpress-nginx")
+    notify.Notification.new("Docker WordPress", "Запущен Wordpress на http://"+ container, None).show()
 
 def stop_wordpress(_):
-    os.system('docker kill wordpress && docker rm -f wordpress')
+    os.system("docker kill "+ container +" && docker rm -f "+ container)
     notify.Notification.new("Docker WordPress", 'Контейнер остановлен', None).show()
 
 def quit(_):
