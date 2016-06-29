@@ -6,7 +6,8 @@ Runs tray indicator.
  
 ## Limits
 
-config.json now is not working
+- config.json now is not working
+- for linux only
 
 ## TODO
 
