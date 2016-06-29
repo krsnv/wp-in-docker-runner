@@ -49,7 +49,7 @@ def build_menu():
 
 def start_wordpress(_):
     os.system("docker run -p "+ port +":80 -d --name "+ container +" eugeneware/docker-wordpress-nginx")
-    notify.Notification.new("Docker WordPress", "Запущен Wordpress на http://"+ container, None).show()
+    notify.Notification.new("Docker WordPress", "Запущен Wordpress на http://localhost:"+ port, None).show()
 
 def stop_wordpress(_):
     os.system("docker kill "+ container +" && docker rm -f "+ container)
