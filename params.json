@@ -1,0 +1,6 @@
+{
+  "name": "Wp-in-docker-runner",
+  "tagline": "Wrapper for docker WordPress container.",
+  "body": "# WP in Docker Runner\r\n\r\nWrapper for docker WordPress container.\r\n\r\nRuns tray indicator.\r\n \r\n## Limits\r\n\r\n- config.json now is not working\r\n- for linux only\r\n\r\n## TODO\r\n\r\n- config.json\r\n- installer\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
